@@ -1,0 +1,28 @@
+<include file="Layout:head" />
+	<main id="post-page" class="container" role="main">
+		<div class="row">
+			<div class="col-md-10 col-md-push-1">
+				<article class="panel post tag-about-ghost tag-ghost-in-depth tag-zhu-shou-han-shu">
+					<header class="panel-heading post-header">
+						<h1 class="post-title"><span id="title-hover">禁止 `ghost_foot` 助手输出 jQuery 链接</span></h1>
+					</header>
+					<section class="panel-body post-content">
+						Ghost 提供了一个 ghost_foot 助手函数，用来在页面底部输出一些自定义的 JavaScript 代码。“插入自定义代码” 功能也需要这个助手函数才能起作用。但是，ghost_foot 助手默认每次都会默认输出一个指向自身目录下的 jQuery 文件的链接，如果我们使用了公共 CDN 加速服务（例如：BootCDN）或者商业的 CDN 加速的话，每次都要加载一个本地文件势必影响页面加载速度。
+
+						为了解决这个问题，我们提供的 Ghost 中文版 对 ghost_foot 助手进行了改进，提供了是否输出 jQuery 链接的开关。下面看一下怎么使用吧。
+						jquery 参数
+
+						在 Ghost 中文版 中，通过为 ghost_foot 添加 jquery=false 就可以禁止输出 jQeury，代码如下：
+					</section>
+				</article>
+				<nav class="row nav-posts">
+					<div class="col-md-6">前一篇：<a href="">为博客增加“标签云”</a></div>
+					<div class="col-md-6 text-right pull-right">后一篇：<a href="">为博客增加“标签云”</a>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</main>
+<include file="Layout:footer" />
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-Cn">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+
+	<script src="__PUBLIC__/js/jquery-2.1.0.min.js"></script>
+	<script src="__PUBLIC__/js/Home/index.js"></script>
+</head>
+<body class="home-template custom-bg" style="background-image: url(__PUBLIC__/img/background2.jpg)">
+	<nav class="navbar navbar-ghost" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="/" class="navbar-brand">
+					<img src="__PUBLIC__/img/logo.jpg" width="50" alt="logo" id="img_small">
+					<img src="__PUBLIC__/img/logo.jpg" width="250" alt="logo" id="img_big">
+				</a>
+			</div>
+			<div id="global-navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active" role="presentation"><a href="{:U('Index/index')}">首页</a></li>
+					<li role="presentation"><a href="{:U('Map/index')}">调查</a></li>
+					<li role="presentation"><a href="{:U('Album/index')}">相册</a></li>
+					<li role="presentation"><a href="">个人简历</a></li>
+					<li role="presentation"><a href="{:U('Index/game')}"  target="_blank">小游戏</a></li>
+				</ul>
+				<p class="navbar-text qq">TEL：17092104420</p>
+			</div>
+		</div>
+	</nav>
