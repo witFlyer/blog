@@ -13,9 +13,4 @@ class ArticleController extends CommonController{
 		$this->assign('list',$list);
 		$this->show();
 	}
-	
-	function article_tag(){
-		
-		$this->show();
-	}
 }

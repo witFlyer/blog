@@ -26,6 +26,10 @@ label{
 ul{
 	list-style: outside none none;
 }
+label{
+	font-size: 14px;
+	font-weight: normal;
+}
 /*******************************Admin-NAV*****************************/
 .navbar-default{
 	background: none repeat scroll 0 0 #F8F8F8;

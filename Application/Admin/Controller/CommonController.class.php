@@ -4,7 +4,7 @@ use Think\Controller;
 
 class CommonController extends Controller{
 	
-	function _initialize(){
+	protected function _initialize(){
 		
 		$user_id = session('user_id');
 		if(!isset($user_id)){
@@ -51,4 +51,13 @@ class CommonController extends Controller{
 		}
 		return $map;
 	}
+	
+	//标签管理
+	protected function _tag_manage($tag_name,$has_pid=true){
+		$this->assign('tag_name',$tag_name);
+		$this->assign('has_pid',$has_pid);
+		R('SystemTag/index');
+		$this->assign('js_file',"SystemTag:js/index");
+	}
+
 }
