@@ -1,7 +1,7 @@
 //检查表单
 function check_form(form_id){
 	var check_flag = true;
-	$('#'+form_id+":input").each(function (i){
+	$('#'+form_id+" :input").each(function (i){
 		if($(this).attr('check')){
 			if(!validate($(this).val(),$(this).attr('check'))){
 				ui_error($(this).attr('msg'));
@@ -89,7 +89,7 @@ function sendForm(formId,post_url,return_url){
 	}else{
 		$('#'+formId).attr('action',post_url);
 		if(return_url){
-			setCookie('return_url',return_url);
+			set_cookie('return_url',return_url);
 		}
 		$('#'+formId).submit();
 	}
@@ -120,6 +120,25 @@ function submit_adv_search(){
 	$('#search_key').val(1);
 	$('#form_adv_search').submit();
 }
+//设置会跳地址
+function set_cookie(key,value,exp,path,domain,secure){
+	var path = '/';
+	var cookie_content = key + "=" + escape(value);
+	if(exp){
+		cookie_content = ";expires ="+exp.toGMTString();
+	}
+	if(path){
+		cookie_content = ";path="+escape(path);
+	}
+	if(domain){
+		cookie_content = ";domain="+escape(domain);
+	}
+	if(secure){
+		cookie_content = ";secure";
+	}
+	document.cookie = cookie_content;
+}
+
 $(document).ready(function(){
 	//左侧菜单了动画效果
 	$('#left_menu li a').each(function (){

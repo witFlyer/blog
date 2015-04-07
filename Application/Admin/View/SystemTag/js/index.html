@@ -1,6 +1,17 @@
 <script type="text/javascript">
-
-	function add(){
+	function add() {
+		$("#opmode").val("add");
+		$("#id").val("");
+		if (check_form("form_data")){
+			sendForm("form_data","", "__SELF__");
+		}
+	};
+	
+	function edit(){
+		
+	}
+	
+	function del(){
 		
 	}
 </script>
