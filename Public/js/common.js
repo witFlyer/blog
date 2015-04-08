@@ -64,7 +64,27 @@ function ui_alert(msg, callback) {
 		}
 	});
 }
-
+function ui_confirm(msg, callback) {
+	bootbox.dialog({
+		message : "<h5>" + msg + "<h5>",
+		buttons : {
+			main : {
+				label : "取消",
+				className : "btn-default",
+				callback : function() {
+					//
+				}
+			},
+			danger : {
+				label : "确定",
+				className : "btn-primary",
+				callback : function() {
+					callback();
+				}
+			}
+		}
+	});
+}
 //提交表单
 function sendForm(formId,post_url,return_url){
 	if($('#ajax').val()==1){
@@ -138,7 +158,53 @@ function set_cookie(key,value,exp,path,domain,secure){
 	}
 	document.cookie = cookie_content;
 }
-
+/*读取 cookie*/
+function get_cookie(cookie_name) {
+	var results = document.cookie.match('(^|;) ?' + cookie_name + '=([^;]*)(;|$)');
+	if (results)
+		return (unescape(results[2]));
+	else
+		return null;
+}
+//返回上一页
+function go_return_url(level){
+	if(level != undefined){
+		return_url = get_cookie("return_url_"+level);
+		window.open(return_url,"_self");
+	}else{
+		return_url = get_cookie("return_url");
+		window.open(return_url,"_self");
+	}
+}
+/* ajax提交*/
+function sendAjax(url, vars, callback) {
+	return $.ajax({
+		type : "POST",
+		url : url,
+		data : vars + "&ajax=1",
+		dataType : "json",
+		success : callback
+	});
+}
+//赋值
+function set_val(name,value){
+	if($("#"+name+" option").length>0){
+		$("#"+name+" option[value='"+value+"']").attr('selected',"selected");
+		return;
+	}
+	if(($("#"+name).attr('rows'))>0){
+		$('#'+name).text(value);
+		return;
+	}
+	if(($("#"+name).attr('type')) ==="text"){
+		$("#"+name).val(value);
+		return;
+	}
+	if (($("#" + name).attr("type")) === "hidden") {
+		$("#" + name).val(value);
+		return;
+	}
+}
 $(document).ready(function(){
 	//左侧菜单了动画效果
 	$('#left_menu li a').each(function (){

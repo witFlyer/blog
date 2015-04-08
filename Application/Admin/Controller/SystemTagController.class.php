@@ -5,6 +5,7 @@ use Think\Controller;
 class SystemTagController extends CommonController{
 	
 	function index(){
+//		dump($_POST);die;
 		if ($_POST) {
 			$opmode = $_POST["opmode"];
 			$model = D("SystemTag");
@@ -12,7 +13,7 @@ class SystemTagController extends CommonController{
 				$this -> error($model -> getError());
 			}
 			if ($opmode == "add") {
-				$model -> module = CONTROLLER_NAME;
+				$model -> controller = CONTROLLER_NAME;
 				$list = $model -> add();
 			}
 			if ($opmode == "edit") {

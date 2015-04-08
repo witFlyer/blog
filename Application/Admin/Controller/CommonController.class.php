@@ -59,5 +59,48 @@ class CommonController extends Controller{
 		R('SystemTag/index');
 		$this->assign('js_file',"SystemTag:js/index");
 	}
-
+	
+	//查看页面
+	function read(){
+		$this->_edit();
+	}
+	
+	protected function _edit($name=null,$id=null){
+		if(empty($name)){
+			$name = CONTROLLER_NAME;
+		}
+		
+		$id = $_REQUEST["id"];
+		$model = M($name);
+		$vo = $model->find($id);
+		if(IS_AJAX){
+			if($vo !== FALSE){
+				$this->ajaxReturn($vo);
+			}else{
+				$this->ajaxReturn(0);
+				die;
+			}
+		}
+		die;
+		$this->assign("vo",$vo);
+		$this->display();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
