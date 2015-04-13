@@ -1,0 +1,29 @@
+<notempty name="widget.editor">
+	<script src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+	<script src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript">
+    	var ue = UE.getEditor('content');
+    </script>
+</notempty>
+
+<notempty name="widget.upload">
+	<script src="__PUBLIC__/Uploadify/jquery.uploadify.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Uploadify/uploadify.css"/>
+	<script type="text/javascript">
+		$(document).ready(function()
+        {
+            $("#uploadify").uploadify({
+                'swf': '__PUBLIC__/Uploadify/uploadify.swf',
+                'uploader': "__URL__/Article/upload",
+                'uploadLimit' : 1,//一次最多只允许上传10张图片
+ 				'fileTypeDesc' : 'Image Files',//只允许上传图像
+ 				'fileTypeExts' : '*.gif; *.jpg; *.png',//限制允许上传的图片后缀
+ 				'method' : 'post',  //方法，服务端可以用$_POST数组获取数据
+                'auto': false,
+                'multi': false,
+            });
+        });  
+	</script>
+	
+</notempty>

@@ -82,18 +82,25 @@ label{
 	color: #B52D26;
 }
 /**********************************************正文**************************************/
-.main_container {
-	top: 80px;
-	width: 100%;
-	background: #fff;
-	position: fixed;
-	bottom: 0;
-	z-index: -2;
+.main_container{
+	padding: 0;
+	position: static;
 }
 .main_container .container_box{
 	position: relative;
 }
-.main_left{
+.main-container::after{
+	top: 0px;
+	width: 100%;
+	background: #fff;
+	bottom: 0;
+	z-index: -2;
+	display: block;
+	position: fixed;
+	content: "";
+	max-width: inherit;
+}
+.main_left::before{
 	background-color: #F2F2F2;
 	border-color: #CCCCCC;
 	border-width: 0 1px 0 0;
@@ -101,8 +108,19 @@ label{
 	width: 190px;
 	position: fixed;
 	display: block;
-	top: 80px;
+	top: 0;
 	bottom: 0;
+	z-index: -1;
+	content: "";
+}
+.main_left{
+	background-color: #F2F2F2;
+	border-color: #CCCCCC;
+	border-width: 0 1px 0 0;
+	border-style: solid;
+	width: 190px;
+	float: left;
+	position: relative;
 }
 #user_info{
 	font-size: 16px;
@@ -177,7 +195,7 @@ label{
 }
 .page_content{
 	margin: 0;
-	padding:8px 20px 24px
+	padding:8px 20px 24px;
 }
 .page-header{
 	margin: 0 0 12px;
@@ -238,7 +256,7 @@ label{
 .no-data{
 	font-size: 24px;
 	text-align: center;
-	border: 1px solid #eee;
+	border: 1px solid #ddd;
 	line-height: 120px;
 }
 .ul_table li span{
@@ -346,6 +364,6 @@ ul.tree_menu i{
 	width: 200px;
 }
 
-
+/****************************上传插件****************************/
 
 

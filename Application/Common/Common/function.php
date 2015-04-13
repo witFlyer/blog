@@ -50,9 +50,25 @@ function get_model_fields($model){
 	}
 	return $arr_field;
 }
+function rotate($a) {
+	$b = array();
+	if(is_array($a)){
+		foreach($a as $val){
+			foreach($val as $k=>$v){
+				$b[$k][] = $v;
+			}
+		}
+	}
+	return $b;
+}
 
-
-
+function get_save_path(){
+	$app_path=__APP__;
+	$save_path=C('SAVE_PATH');
+	$app_path=str_replace("/index.php?s=","",$app_path);
+	$app_path=str_replace("/index.php","",$app_path);
+	return C('SAVE_PATH');
+}
 
 
 

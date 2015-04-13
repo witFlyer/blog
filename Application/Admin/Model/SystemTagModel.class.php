@@ -11,7 +11,12 @@ class SystemTagModel extends CommonModel{
 	}
 	
 	//删除标签
-	public function del_tag(){
-		
+	public function del_tag($id){
+		//同时删除子标签
+		$tag_ids = M('systemTag')->where("pid=$id")->field("id")->select();
+		$tag_ids = rotate($tag_ids);
+		$tag_ids = implode(",", $tag_ids['id']) . ",$id";
+		$where['id'] = array("in",$tag_ids);
+		$this->where($where)->delete();
 	}
 }
