@@ -48,22 +48,23 @@
 											<a onclick="go_return_url()" class="btn btn-info">返回</a>
 										</div>
 										<div class="pull-right">
-											<a onclick="add()"  class="btn btn-success">保存</a>
+											<a onclick="save()"  class="btn btn-success">保存</a>
 										</div>
 									</div>
 								</div>
 									<form method="post" name="form_data" id="form_data" class="form-horizontal" enctype="multipart/form-data">
 										<input type="hidden" name="user_id" id="user_id" value="{:get_user_id()}" />
-										<input type="hidden" name="opmode" id="opmode" value="" />
+										<input type="hidden" name="opmode" id="opmode" value="edit" />
 										<input type="hidden" name="ajax" id="ajax" value="0" />
+										<input type="hidden" name="id" id="id" value="{$list.id}" />
 										<table class="table table-bordered">
 											<tbody>
 												<tr>
 													<th><nobr>标题<font color="red">*</font></nobr></th>
-													<td colspan="2"><input type="text" class="form-control" id="name" name="name" check="required" msg="请填写文章标题"/></td>
+													<td colspan="2"><input type="text" class="form-control" id="name" name="name" check="" msg="请填写文章标题" value="{$list.name}"/></td>
 													<td rowspan="3">
 														<input type="hidden" name="cover" id="cover" value="" />
-														<img src="" class="img-thumbnail col-12" id="cover_img" style="width: 100px;height: 100px;"/>
+														<img src=<empty name="list['cover']">"__PUBLIC__/img/default_cover.jpg" <else /> "__ROOT__/Uploads/{$list.cover}" </empty> class="img-thumbnail col-12" id="cover_img" style="width: 100px;height: 100px;"/>
 													</td>
 												</tr>
 												<tr>
@@ -75,14 +76,14 @@
 												</tr>
 												<tr>
 													<th class="col-10">关键字</th>
-													<td colspan="2"><input type="text" value="" class="form-control" id="keyword" name="keyword" placeholder="多个关键字用,隔开" check="required" msg="请填写关键字"/></td>
+													<td colspan="2"><input type="text" value="" class="form-control" id="keyword" name="keyword" placeholder="多个关键字用|隔开" value="{$list.keywords}"/></td>
 												</tr>
 												<tr>
 													<th>类别<font color="red">*</font></th>
 													<td colspan="2">
-														<select name="tag" id="tag" class="form-control col-11">
+														<select name="tag" id="tag" class="form-control col-10">
 															<option value="">选择类型</option>
-															{:fill_option($tag_list)}
+															{:fill_option($tag_list,$list['tag'])}
 														</select>
 													</td>
 													<td colspan="2">
@@ -93,18 +94,18 @@
 												<tr>
 													<th>正文<font color="red">*</font></th>
 													<td colspan="3">
-														<script id="content" name="content" type="text/plain" style="width:100%;height:500px;">这里填写你的内容</script>
+														<script id="content" name="content" type="text/plain" style="width:100%;height:500px;"><?php echo(htmlspecialchars_decode($list['content']))?></script>
 													</td>
 												</tr>
 												<tr>
 													<th>外部链接</th>
-													<td colspan="3"><input type="text" value="" class="form-control" id="url" name="url"/></td>
+													<td colspan="3"><input type="text" value="{$list.url}" class="form-control" id="url" name="url"/></td>
 												</tr>
 												<tr>
 													<th>作者</th>
-													<td><input type="text" name="author" class="form-control"/></td>
+													<td><input type="text" name="author" class="form-control" value="{$list.author}"/></td>
 													<th>浏览数</th>
-													<td><input type="see" name="see" class="form-control col-10"/></td>
+													<td><input type="see" name="see" class="form-control col-10" value="{$list.see}"/></td>
 												</tr>
 											</tbody>
 										</table>
@@ -118,21 +119,3 @@
 		</main>
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

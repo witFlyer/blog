@@ -65,6 +65,12 @@ class CommonController extends Controller{
 		$this->_edit();
 	}
 	
+	function save(){
+		$this->_save();
+	}
+	function del(){
+		$this->_del();
+	}
 	protected function _edit($name=null,$id=null){
 		if(empty($name)){
 			$name = CONTROLLER_NAME;
@@ -86,13 +92,92 @@ class CommonController extends Controller{
 		$this->display();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	protected function _save($name=null){
+		$opmode = $_POST['opmode'];
+		switch($opmode){
+			case 'add':
+				$this->_insert($name);
+				break;
+			case 'edit':
+				$this->_update($name);
+				break;
+			case 'del':
+				$this->_del($name);
+				break;
+			default:
+				$this->error("非法操作");
+				break;
+		}
+	}
+	//添加数据
+	protected function _insert($name=null){
+		if(empty($name)){
+			$name = CONTROLLER_NAME;
+		}
+		$model = D($name);
+		if(FALSE === $model->create()){
+			$this->error($model->getError());
+		}
+		$list = $model->add();
+		if(FALSE !== $list){
+			$this->assign('jumpUrl',get_return_url());
+			$this->success("新增成功");
+		}else{
+			$this->error("新增失败");
+		}
+	}
+	//更新数据
+	protected function _update($name=null){
+		if(empty($name)){
+			$name = CONTROLLER_NAME;
+		}
+		$model = D($name);
+		if(FALSE === $model->create()){
+			$this->error($model->getError());
+		}
+		$list = $model->save();
+		if(FALSE !== $list){
+			$this->assign('jumpUrl',get_return_url());
+			$this->success("编辑成功");
+		}else{
+			$this->error("编辑失败");
+		}
+	}
+	//删除数据
+	protected function _del($id=null,$name=null,$return_flag=null){
+		if(empty($id)){
+			$id=$_REQUEST['id'];
+			if(empty($id)){
+				$this->error("没有可删除的文章");
+			}
+		}
+		if(empty($name)){
+			$name = CONTROLLER_NAME;
+		}
+		$model = M($name);
+		if(!empty($model)){
+			if(isset($id)){
+				$pk = $model->getPk();
+				if(is_array($id)){
+					$where[$pk] = array('in',array_filter($id));	
+				}else{
+					$where[$pk] = array('in',array_filter(explode(',', $id)));
+				}
+				$result = $model->where($where)->setField('is_del',1);
+				if($return_flag){
+					return $result;
+				}
+				if($result !== FALSE){
+					$this->assign('jumpUrl',get_return_url());
+					$this->success("成功删除{$result}条");
+				}else{
+					$this->error("删除失败!");
+				}
+			}else{
+				$this->error("没有可删除的数据!");
+			}
+		}
+	}
 	
 	
 	

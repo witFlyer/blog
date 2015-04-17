@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-lg-8 col-lg-push-2">
 				<h1 class="blog-title">My name is ChenYe</h1>
-				<h2 class="blog-desc">阳光和煦，一杯咖啡，一台 Macbook. 开始一天的好心情。。。</h2>
+				<h2 class="blog-desc">阳光和煦，一杯咖啡，一台macbook. 开始一天的好心情。。。</h2>
 				<div class="social">
 					<a href="http://weibo.com/qianxunj" target="_blank" class="btn btn-outline btn-lg"> <i class="fa fa-weibo"></i>个人微博</a>
 					<a href="javascript:void(0)" class="btn btn-outline btn-lg" id="weixin"> <i class="fa fa-comments"></i>个人微信</a>
@@ -16,7 +16,11 @@
 	<main class="container" role="main">
 		<div class="row">
 			<div class="col-sm-8 col-sm-push-1">
-				<foreach name="list" item="vo">
+				<header class="panel post tag-about-ghost tag-ghost-in-depth tag-zhu-shou-han-shu">
+					<h2 class="post-title" style="color: #D3682F;text-align: center;">标签:{$tag_name}</h2>
+					<p style="color: #999;text-align: center;">共 {$count} 篇文章</p>
+				</header>
+				<foreach name="article_list" item="vo">
 				<article class="panel post tag-about-ghost tag-ghost-in-depth tag-zhu-shou-han-shu">
 					<header class="panel-heading post-header">
 						<h2 class="post-title"><a href="{:U('read','id='.$vo['id'])}" target="_blank">{$vo.name}</a></h2>

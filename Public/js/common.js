@@ -140,31 +140,18 @@ function submit_adv_search(){
 	$('#search_key').val(1);
 	$('#form_adv_search').submit();
 }
-//设置会跳地址
-function set_cookie(key,value,exp,path,domain,secure){
-	var path = '/';
-	var cookie_content = key + "=" + escape(value);
-	if(exp){
-		cookie_content = ";expires ="+exp.toGMTString();
+
+/*设置要返回的URL*/
+function set_return_url(url, level) {
+	if (url != undefined) {
+		if (level != undefined) {
+			set_cookie("return_url_" + level, url);
+		} else {
+			set_cookie("return_url", url);
+		}
+	} else {
+		set_cookie("return_url", document.location);
 	}
-	if(path){
-		cookie_content = ";path="+escape(path);
-	}
-	if(domain){
-		cookie_content = ";domain="+escape(domain);
-	}
-	if(secure){
-		cookie_content = ";secure";
-	}
-	document.cookie = cookie_content;
-}
-/*读取 cookie*/
-function get_cookie(cookie_name) {
-	var results = document.cookie.match('(^|;) ?' + cookie_name + '=([^;]*)(;|$)');
-	if (results)
-		return (unescape(results[2]));
-	else
-		return null;
 }
 //返回上一页
 function go_return_url(level){
@@ -204,6 +191,32 @@ function set_val(name,value){
 		$("#" + name).val(value);
 		return;
 	}
+}
+//设置会跳地址
+function set_cookie(key,value,exp,path,domain,secure){
+	var path = '/';
+	var cookie_content = key + "=" + escape(value);
+	if(exp){
+		cookie_content = ";expires ="+exp.toGMTString();
+	}
+	if(path){
+		cookie_content = ";path="+escape(path);
+	}
+	if(domain){
+		cookie_content = ";domain="+escape(domain);
+	}
+	if(secure){
+		cookie_content = ";secure";
+	}
+	document.cookie = cookie_content;
+}
+/*读取 cookie*/
+function get_cookie(cookie_name) {
+	var results = document.cookie.match('(^|;) ?' + cookie_name + '=([^;]*)(;|$)');
+	if (results)
+		return (unescape(results[2]));
+	else
+		return null;
 }
 $(document).ready(function(){
 	//左侧菜单了动画效果

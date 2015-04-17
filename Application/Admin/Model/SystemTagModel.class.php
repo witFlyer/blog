@@ -6,6 +6,7 @@ class SystemTagModel extends CommonModel{
 	
 	public function get_tag_list($field = "id,name",$controller = CONTROLLER_NAME){
 		$where['controller'] = $controller;
+		$where['is_del'] = 0;
 		$list = $this->where($where)->field($field)->order('sort ASC')->select();
 		return $list; 
 	}

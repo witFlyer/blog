@@ -70,10 +70,55 @@ function get_save_path(){
 	return C('SAVE_PATH');
 }
 
+function get_user_id(){
+	$user_id = session('user_id');
+	if(!empty($user_id)){
+		return $user_id;
+	}
+}
 
+function get_return_url($level=null){
+	if(empty($level)){
+		$return_url = cookie('return_url');
+	}else{
+		$return_url = cookie('return_url_'.$level);
+	}
+	return $return_url;
+}
 
+//设置select布局
+function fill_option($list,$data){
+	$html = '';
+	foreach($list as $key=>$val){
+		if(is_array($val)){
+			$id = $val['id'];
+			$name = $val['name'];
+			if($id==$data){
+				$selected = 'selected';
+			}else{
+				$select = '';
+			}
+			$html = $html."<option value='{$id}' $selected>{$name}</option>";
+		}else{
+			if($key==$data){
+				$selected = 'selected';
+			}else{
+				$selected = '';
+			}
+			$html = $html."<option value='{$key}' $select>{$val}</option>";
+		}
+	}
+	echo $html;
+}
 
-
+function get_tag_name($id){
+	if(!empty($id)){
+		$name = M('SystemTag')->where("id=$id")->getField("name");
+		return $name;
+	}else{
+		return "-";
+	}
+}
 
 
 

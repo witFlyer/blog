@@ -86,13 +86,15 @@
 									<ul>
 									<li class="thead">
 										<div class="pull-left">
-											<span class="col-10"><label><input type="checkbox" name="id-article-all" id="id-article-all"/></label></span>
-											<span>文章名称</span>
-										</div>
-										<div class="pull-right">
+											<span class="col-10">
+												<label><input type="checkbox" name="id-article-all" id="id-article-all"/></label>
+											</span>
+											<span class="col-20">文章名称</span>
 											<span class="col-16">标签</span>
 											<span class="col-16">作者</span>
-											<span class="col-16">外部链接</span>
+										</div>
+										<div class="pull-right">
+											<span class="auto autocut">外部链接</span>
 										</div>
 									</li>	
 									<empty name="list">
@@ -100,19 +102,21 @@
 											你还没有添加文章!
 										</li>
 									<else />
+									<form method="post" action="" id="form_data">
 									<foreach name="list" item="vo">
 									<li class="tbody">
 										<div class="pull-left">
-											<span class="col-10"><label><input type="checkbox" name="id-article-all" id="id-article-all"/></label></span>
-											<span><a href="">{$vo.name}</a></span>
+											<span class="col-10"><label><input type="checkbox" name="article_id[]" value="{$vo.id}"/></label></span>
+											<span class="col-20"><a href="{:U('edit','id='.$vo['id'])}">{$vo.name}</a></span>
+											<span class="col-16">{:get_tag_name($vo['tag'])}</span>
+											<span class="col-16"><empty name="vo.author">-<else/>{$vo.author}</empty></span>
 										</div>
 										<div class="pull-right">
-											<span class="col-16">{$vo.tag}</span>
-											<span class="col-16">{$vo.author}</span>
-											<span class="col-16"><a href="{$vo.url}">{$vo.url}</a></span>
+											<span class="auto autocut" style="word-wrap : break-word;padding-left:5px;"><empty name="vo.url">-<else/><a href="{$vo.url}" target="_blank">{$vo.url}</a></empty></span>
 										</div>
 									</li>
 									</foreach>
+									</form>
 									</empty>
 									</ul>
 								</div>

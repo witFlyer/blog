@@ -257,7 +257,8 @@ label{
 	font-size: 24px;
 	text-align: center;
 	border: 1px solid #ddd;
-	line-height: 120px;
+	line-height: 150px;
+	color: #999;
 }
 .ul_table li span{
 	display: block;
